@@ -1,18 +1,34 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { SocketContext } from "../../context/SocketContext";
 import "./header.css";
+import SearchBox from "./SearchBox";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const { socket } = useContext(SocketContext);
+
   const handleChange = (e) => {
     const val = e.target.value;
     setSearchQuery(val);
   };
+
+  useEffect(() => {
+    socket.emit("search", searchQuery);
+    socket.on("result", (res) => {
+      console.log(res);
+    });
+    socket.connect();
+    return () => {
+      socket.disconnect();
+    };
+  }, [searchQuery, socket]);
+
   return (
     <div className="header">
       <div className="logo">
         <div className="logoInner">LOGO</div>
       </div>
-      <div className="searchWrap">
+      <div className={"searchWrap"}>
         <input
           placeholder="Find a user"
           className="searchBox"
@@ -20,7 +36,7 @@ const Header = () => {
           value={searchQuery}
           onChange={handleChange}
         />
-        {searchQuery.length > 0 && <div className={"searchRes"}></div>}
+        {searchQuery.length > 0 && <SearchBox />}
       </div>
     </div>
   );
