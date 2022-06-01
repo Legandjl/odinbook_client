@@ -1,0 +1,38 @@
+.header {
+    height:5em;
+    width:100vw;
+    background-color: #242526;
+    display: grid;
+    padding-left: 2em;
+    grid-template-columns: auto 1fr 1fr;
+}
+
+.logo {
+    height:100%;
+    width:3em;
+    display: grid;
+    margin-right: 2em;    
+}
+
+.logoInner {
+    align-self: center;
+    background-color: #F4F7FD;
+    width:3em;
+    height:3em;
+    justify-self: center;
+    display: grid;
+    align-items: center;
+}
+
+.searchBox {
+    width:18em;
+    height:1.5em;
+    align-self: center;
+
+border:none;
+outline:none;
+padding-left: 7px;
+color:#292929cf;
+height:2em;
+border-radius: 12px;
+}
