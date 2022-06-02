@@ -5,6 +5,7 @@ import SearchBox from "./SearchBox";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
   const { socket } = useContext(SocketContext);
 
   const handleChange = (e) => {
@@ -13,9 +14,13 @@ const Header = () => {
   };
 
   useEffect(() => {
-    socket.emit("search", searchQuery);
+    setLoading(true);
+    if (searchQuery.length > 0) {
+      socket.emit("search", searchQuery);
+    }
     socket.on("result", (res) => {
       console.log(res);
+      setLoading(false);
     });
     socket.connect();
     return () => {
@@ -36,7 +41,7 @@ const Header = () => {
           value={searchQuery}
           onChange={handleChange}
         />
-        {searchQuery.length > 0 && <SearchBox />}
+        {searchQuery.length > 0 && <SearchBox loading={loading} />}
       </div>
     </div>
   );
