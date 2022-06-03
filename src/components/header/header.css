@@ -32,32 +32,12 @@
     position: relative;
 }
 
-.searchBox {
-    width:100%;
-    height:1.5em;
-    border:none;
-    outline:none;
-    padding-left: 14px;
-    color:#292929cf;
-    height:2em;
-    border-radius: 12px;
-    background-color: #3a3a3c;
-    color: rgb(241, 237, 237);
+.header i {
+    color:white;
+    align-self: center;
+    font-size: 1.3em;
+    margin-right: 4em;
+    justify-self: end;
+    cursor: pointer;
  
-}
-
-.searchBox, .searchRes {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-}
-
-.searchRes {
-    height:300px;
-    width:100%;
-    background-color: #3a3a3c;
-    position: absolute;
-    padding-left: 14px;
-    border-radius: 12px;
-    top:30px;
-
 }

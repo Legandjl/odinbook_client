@@ -1,6 +1,3 @@
-search box opens up on change to input
-input needs to be a controlled component
-add icons to header
-set up socket for search
-add route functionality
+auto login functionality in user context
+refresh brings you back to page you were on
 
