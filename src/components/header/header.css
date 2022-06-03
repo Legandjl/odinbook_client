@@ -1,18 +1,19 @@
 .header {
     height:5em;
-    width:100vw;
+    width:100%;
     background-color: #242526;
     display: grid;
     padding-left: 2em;
+    padding-right: 2em;
     grid-template-columns: auto 1fr 1fr;
+    position: fixed;
+
 }
 
 .logo {
     height:100%;
     width:3em;
-    display: grid;
-    margin-right: 2em;  
-    
+    display: grid;    
 }
 
 .logoInner {
@@ -30,14 +31,26 @@
     align-self: center;
     width:18em;
     position: relative;
+    justify-self: start;
+    margin-left: 2em;
+
 }
 
-.header i {
+.functionWrap {
     color:white;
     align-self: center;
-    font-size: 1.3em;
-    margin-right: 4em;
+    font-size: 1.2em;
     justify-self: end;
+    grid-column: 3;
+    margin-right: 4em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+  
     cursor: pointer;
+
+}
+.header i {
+
  
 }

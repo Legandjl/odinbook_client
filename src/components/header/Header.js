@@ -3,21 +3,20 @@ import { SocketContext } from "../../context/SocketContext";
 import "./header.css";
 import SearchBox from "../search/SearchBox";
 import { useLocation } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchRes, setSearchRes] = useState([]);
   const { socket } = useContext(SocketContext);
-  const { logout, token } = useContext(UserContext);
+  const { logout, token } = useContext(AuthContext);
   const location = useLocation();
 
   useEffect(() => {
-    setSearchQuery("");
+    setSearchQuery(""); //clear search on nav
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.key]);
-  //resets window pos on nav
 
   const handleChange = (e) => {
     const val = e.target.value;
@@ -30,7 +29,6 @@ const Header = () => {
       socket.emit("search", searchQuery);
     }
     socket.on("result", (res) => {
-      console.log(res);
       setSearchRes(res);
       setLoading(false);
     });
@@ -59,7 +57,12 @@ const Header = () => {
           )}
         </div>
       )}{" "}
-      {token && <i onClick={logout} class="ri-logout-circle-line"></i>}
+      {token && (
+        <div className="functionWrap">
+          <i class="ri-user-line"></i>
+          <i onClick={logout} class="ri-logout-circle-line"></i>
+        </div>
+      )}
     </div>
   );
 };

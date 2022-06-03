@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { AuthContext } from "../../context/AuthContext";
+import "./login.css";
 
 const Login = () => {
-  const { handleLogin, token, loading } = useContext(UserContext);
+  const { login, token, loading } = useContext(AuthContext);
   const nav = useNavigate();
   useEffect(() => {
     if (token && !loading) {
@@ -23,8 +24,8 @@ const Login = () => {
     }
   }, [loading, nav, token]);
   return (
-    <div>
-      <button onClick={handleLogin}>click me</button>
+    <div className="loginWrap">
+      {!token && <button onClick={login}>click me</button>}
     </div>
   );
 };

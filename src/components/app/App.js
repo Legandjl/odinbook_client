@@ -6,13 +6,13 @@ import ResultsPage from "../search/ResultsPage";
 import Home from "../home/Home";
 import Page from "../user/Page";
 import Login from "../auth/Login";
-import { UserContextProvider } from "../../context/UserContext";
+import { AuthContextProvider } from "../../context/AuthContext";
 import ProtectedRoute from "../protected/ProtectedRoute";
 
 function App() {
   return (
     <SocketContextProvider>
-      <UserContextProvider>
+      <AuthContextProvider>
         <div className="App">
           <Header />
           <Routes>
@@ -47,7 +47,7 @@ function App() {
             />
           </Routes>
         </div>
-      </UserContextProvider>
+      </AuthContextProvider>
     </SocketContextProvider>
   );
 }
