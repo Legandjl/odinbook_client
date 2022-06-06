@@ -1,0 +1,12 @@
+.userPage {
+    height:100%;
+
+    grid-row: 2;
+}
+.preview {
+    width: 100px;
+    height:100px;
+}
+.imageWrap {
+    
+}

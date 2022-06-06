@@ -8,45 +8,49 @@ import Page from "../user/Page";
 import Login from "../auth/Login";
 import { AuthContextProvider } from "../../context/AuthContext";
 import ProtectedRoute from "../protected/ProtectedRoute";
+import { FileContextProvider } from "../../context/FileContext";
 
 function App() {
   return (
     <SocketContextProvider>
       <AuthContextProvider>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path={"/"} element={<Login />} />
-            <Route path={"/login"} element={<Login />} />
-            <Route
-              path={"/home"}
-              element={
-                <ProtectedRoute>
-                  {" "}
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path={"/search/:query"}
-              element={
-                <ProtectedRoute>
-                  {" "}
-                  <ResultsPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path={"/user/page"}
-              element={
-                <ProtectedRoute>
-                  {" "}
-                  <Page />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </div>
+        <FileContextProvider>
+          {" "}
+          <div className="App">
+            <Header />
+            <Routes>
+              <Route path={"/"} element={<Login />} />
+              <Route path={"/login"} element={<Login />} />
+              <Route
+                path={"/home"}
+                element={
+                  <ProtectedRoute>
+                    {" "}
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path={"/search/:query"}
+                element={
+                  <ProtectedRoute>
+                    {" "}
+                    <ResultsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path={"/user/:id"}
+                element={
+                  <ProtectedRoute>
+                    {" "}
+                    <Page />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </div>
+        </FileContextProvider>
       </AuthContextProvider>
     </SocketContextProvider>
   );

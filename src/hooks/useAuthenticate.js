@@ -1,4 +1,4 @@
-const useLogin = ({ setLoading, setToken }) => {
+const useAuthenticate = ({ setLoading, setToken, setUser }) => {
   const setLocal = (name, data) => {
     localStorage.setItem(name, data);
   };
@@ -19,6 +19,7 @@ const useLogin = ({ setLoading, setToken }) => {
       });
       const jsonData = await data.json();
       setLocal("token", jsonData.token);
+      setUser(jsonData.user);
       setToken(jsonData.token);
       setLoading(false);
       return data;
@@ -35,4 +36,4 @@ const useLogin = ({ setLoading, setToken }) => {
   return [login, logout];
 };
 
-export default useLogin;
+export default useAuthenticate;

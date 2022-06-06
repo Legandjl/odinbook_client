@@ -6,7 +6,7 @@ const SearchBox = (props) => {
     return <SearchLink info={item} />;
   });
   return (
-    <div className={"searchRes"}>
+    <div className={"searchRes"} data-menu={true}>
       {!props.loading && searchLinks}
       {props.results.length === 0 && <p>No suggestions </p>}
     </div>

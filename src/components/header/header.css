@@ -25,6 +25,7 @@
     display: grid;
     align-items: center;
     padding: 2px;
+    color:black;
 }
 
 .searchWrap {

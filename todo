@@ -1,3 +1,6 @@
-auto login functionality in user context
-refresh brings you back to page you were on
+clicking prof pic button adds overlay
+select upload photo
 
+https://www.npmjs.com/package/react-avatar-image-cropper
+
+https://www.npmjs.com/package/react-avatar-editor

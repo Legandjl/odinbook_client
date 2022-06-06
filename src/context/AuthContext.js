@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useLocationTracker from "../hooks/useLocationTracker";
-import useLogin from "../hooks/useAuthenticate";
+import useAuthenticate from "../hooks/useAuthenticate";
 
 const AuthContext = React.createContext();
 
 const AuthContextProvider = (props) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [login, logout] = useLogin({ setLoading, setToken });
+  const [user, setUser] = useState(null);
+  const [login, logout] = useAuthenticate({ setLoading, setToken, setUser });
 
   useLocationTracker();
 
@@ -29,7 +30,9 @@ const AuthContextProvider = (props) => {
           logout();
         } else {
           //Authenticated
+          const user = await testLogin.json();
           localStorage.setItem("token", localToken);
+          setUser(user);
           setToken(localToken);
         }
         setLoading(false);
@@ -43,7 +46,7 @@ const AuthContextProvider = (props) => {
   }, [loading, logout, token]);
 
   return (
-    <AuthContext.Provider value={{ logout, login, token, loading }}>
+    <AuthContext.Provider value={{ logout, login, token, loading, user }}>
       {props.children}
     </AuthContext.Provider>
   );

@@ -13,11 +13,16 @@ a {
     color:#292929cf;
     height:2em;
     border-radius: 12px;
-    background-color: #3a3a3c;
+    background-color: #242526;
     color: rgb(241, 237, 237);
+    border: solid 1px #5F6368;
 
    
  
+}
+
+.searchBox:focus {
+    background-color:#303134;
 }
 
 .searchBox, .searchRes {
@@ -30,16 +35,17 @@ a {
 padding-bottom: 10px;
    max-height: 300px;   
     width:100%;
-    background-color: #3a3a3c;
+    background-color:#303134;
     position: absolute;
     padding-left: 14px;
     border-radius: 12px;
-    top:30px;
+    top:33px;
     display: grid;
     justify-items: start;
     grid-auto-rows: min-content;
     grid-gap: 10px;
     min-height: 20px;
+    border: solid 1px #5F6368;
 
     overflow-y: scroll;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
