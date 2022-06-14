@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import "./App.css";
 import ResultsPage from "../search/ResultsPage";
 import Home from "../home/Home";
-import Page from "../user/Page";
+import Page from "../user/page/Page";
 import Login from "../auth/Login";
 import { AuthContextProvider } from "../../context/AuthContext";
 import ProtectedRoute from "../protected/ProtectedRoute";

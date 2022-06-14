@@ -1,13 +1,9 @@
-import { useCallback, useEffect, useRef, useContext, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Cropper from "react-easy-crop";
 import { useNavigate } from "react-router";
-import { FileContext } from "../../context/FileContext";
-import useImageCrop from "../../hooks/useImageCrop";
 
 import "./Cropper.css";
 import "./Style.css";
-
-//css needs refactor
 
 const CropTool = (props) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -15,21 +11,24 @@ const CropTool = (props) => {
   const [cropFinal, setCropFinal] = useState(false);
   const [currentCrop, setCurrentCrop] = useState({});
   const [attemptingUpload, setAttemptingUpload] = useState(false);
-  const [loadImage] = useImageCrop();
-  const { toggleCrop } = useContext(FileContext);
 
   const nav = useNavigate();
 
   useEffect(() => {
     const uploadFile = async () => {
+      console.log("starting upload");
       setAttemptingUpload(true);
-      const ref = await loadImage(currentCrop, props.image);
-      console.log(ref);
+      const ref = await props.loadImage(currentCrop, props.image);
+      setAttemptingUpload(false);
+      setCropFinal(false);
+      console.log("upload completed");
+      props.toggleCrop();
+      nav(`/home`, { replace: true });
     };
     if (cropFinal && !attemptingUpload) {
       uploadFile();
     }
-  }, [attemptingUpload, cropFinal, currentCrop, loadImage, nav, props]);
+  }, [attemptingUpload, cropFinal, currentCrop, nav, props]);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCurrentCrop(croppedAreaPixels);
@@ -42,7 +41,7 @@ const CropTool = (props) => {
           <i
             style={{ color: "white" }}
             className="ri-close-line"
-            onClick={toggleCrop}
+            onClick={props.toggleCrop}
           ></i>
         </div>{" "}
         <div className={"cropContainerInner"}>

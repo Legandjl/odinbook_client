@@ -1,9 +1,11 @@
 .App {
   text-align: center;
-  background-color: #F4F7FD;
+  background-color: #18191A;
   min-height:100vh;
   display: grid;
   grid-template-rows: 5em 1fr auto;
+  color:white;
+  font-family: 'Oxygen Mono', monospace;
 }
 
 .App-logo {

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const createImage = (url) =>
   new Promise((resolve, reject) => {
     const image = new Image();
@@ -57,13 +59,26 @@ async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
 }
 
 const useImageCrop = () => {
-  const loadImage = async (croppedAreaValues, image) => {
-    const croppedImage = await getCroppedImg(image, croppedAreaValues);
-    //const ref = await uploadFile(croppedImage);
-    //return ref;
+  const [imageSrc, setImageSrc] = useState(null);
+  const [isCropping, setCropping] = useState(false);
+
+  const toggleCrop = () => {
+    setCropping((prev) => {
+      return !prev;
+    });
   };
 
-  return [loadImage];
+  const startCrop = (src) => {
+    setImageSrc(src);
+    toggleCrop();
+  };
+
+  const loadImage = async (croppedAreaValues, image) => {
+    const imageDataUrl = await getCroppedImg(image, croppedAreaValues);
+    return imageDataUrl;
+  };
+
+  return [loadImage, imageSrc, toggleCrop, startCrop, isCropping];
 };
 
 export default useImageCrop;

@@ -29,9 +29,11 @@ const Header = () => {
   useEffect(() => {
     setLoading(true);
     if (searchQuery.length > 0) {
+      console.log(searchQuery);
       socket.emit("search", searchQuery);
     }
     socket.on("result", (res) => {
+      console.log(res);
       setSearchRes(res);
       setLoading(false);
     });
