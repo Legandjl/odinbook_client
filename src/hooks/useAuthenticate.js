@@ -13,7 +13,7 @@ const useAuthenticate = ({ setLoading, setToken, setUser }) => {
         },
         mode: "cors",
         body: JSON.stringify({
-          email: "testemail@gmail.com",
+          email: "dorianlegan@gmail.com",
           password: "9114",
         }),
       });

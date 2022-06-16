@@ -18,7 +18,7 @@ const SideBar = (props) => {
   // startcrop sets is cropping & imagesrc
   // iscropping sets croptool to display with src as imagesrc
   // then croptool handles upload and sets is cropping to false
-  // closing the window
+  // which closes the window
 
   /* 
         <FilePicker startCrop={startCrop} />

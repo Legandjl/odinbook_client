@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 const useFetch = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const nav = useNavigate();
   if (error) {
     console.error("error " + error);
   }
   const fetchData = async (params, options) => {
+    setError(false);
     try {
       const url = `http://localhost:3001/${params}`;
       setLoading(true);
@@ -24,9 +25,9 @@ const useFetch = () => {
         return;
       }
       if (data.status === 404) {
-        console.log(data.error);
-        setError(404);
+        console.error("404 " + url);
         setLoading(false);
+        //nav(`/404`, { replace: true });
         return;
       }
       if (!data.ok) {
@@ -36,7 +37,8 @@ const useFetch = () => {
       setLoading(false);
       return jsonData;
     } catch (e) {
-      setError(500);
+      setError(true);
+      console.log("error fetching caught");
       setLoading(false);
       return;
     }

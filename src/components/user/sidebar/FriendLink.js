@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import useDataLoad from "../../../hooks/useDataLoad";
 
@@ -12,7 +13,11 @@ const FriendLink = ({ id }) => {
 
   return (
     <div className="friendLink">
-      {!loading && <img src={profileData.profilePic} />}
+      {!loading && (
+        <Link to={`/user/${id}`}>
+          <img src={profileData.profilePic} />
+        </Link>
+      )}
     </div>
   );
 };
