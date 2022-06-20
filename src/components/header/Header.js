@@ -5,6 +5,7 @@ import SearchBox from "../search/SearchBox";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import useShowMenu from "../../hooks/useShowMenu";
+import HeaderFunctions from "./HeaderFunctions";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,7 +13,7 @@ const Header = () => {
   const [searchRes, setSearchRes] = useState([]);
   const { socket } = useContext(SocketContext);
   const { logout, token, user } = useContext(AuthContext);
-  const [showMenu, toggleOn, toggleOff] = useShowMenu({ setSearchQuery });
+  const [showMenu, toggleOn] = useShowMenu();
   const location = useLocation();
 
   useEffect(() => {
@@ -29,11 +30,9 @@ const Header = () => {
   useEffect(() => {
     setLoading(true);
     if (searchQuery.length > 0) {
-      console.log(searchQuery);
       socket.emit("search", searchQuery);
     }
     socket.on("result", (res) => {
-      console.log(res);
       setSearchRes(res);
       setLoading(false);
     });
@@ -65,15 +64,7 @@ const Header = () => {
           )}
         </div>
       )}{" "}
-      {token && (
-        <div className="functionWrap">
-          <Link to={`user/${user._id}`}>
-            <i class="ri-user-line"></i>
-          </Link>
-
-          <i onClick={logout} class="ri-logout-circle-line"></i>
-        </div>
-      )}
+      {token && <HeaderFunctions user={user} logout={logout} />}
     </div>
   );
 };

@@ -4,9 +4,13 @@
   min-height:100vh;
   display: grid;
   grid-template-rows: 5em 1fr auto;
-  color:white;
+  color:#FAFAF2;
   font-family: 'Oxygen Mono', monospace;
+  
 }
+
+
+
 
 .App-logo {
   height: 40vmin;

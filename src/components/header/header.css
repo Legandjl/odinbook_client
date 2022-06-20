@@ -40,20 +40,104 @@
 }
 
 .functionWrap {
-    color:white;
+    color:#FAFAF2;
     align-self: center;
     font-size: 1.2em;
     justify-self: end;
     grid-column: 3;
     margin-right: 4em;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1em;
-  
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.1em;  
     cursor: pointer;
+}
+
+
+.friendMenu {
+    position: absolute;
+    width:max-content;
+    max-height: 15em;
+    min-height: 2.3em;
+
+    width: 16em;
+    right:1px;
+    top:25px;
+    border-radius: 12px;
+    background-color: #303134;
+    color: rgb(241, 237, 237);
+    border: solid 1px #5F6368;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: grid;
+    justify-items: left;
+    align-items: center;
+}
+
+.friendReq {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-size: 0.8em;
+    display: grid;
+    align-items: center;
+    height:100%;
+    align-content: center;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 5px;
+    width:100%;
+
+
+   
+}
+
+.friendReqLoader {
+    margin-top: 5px;
+    margin-bottom: 10px;
 
 }
-.header i {
 
+.friendReqButtons {
+    justify-self: end;
+    margin:none;
+    padding:none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-left: 15px;
+    
+}
+
+.friendReqButtons button {
  
+    border: solid 1px #FAFAF2;
+    border-radius: 6px;
+    background-color: #3f4044fc;
+    color:#FAFAF2;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding:4px;
+    cursor: pointer; 
+font-family: inherit;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.friendReqButtons button:hover {
+    border: solid 1px  #3f4044fc;
+ 
+
+    border-radius: 6px;
+    background-color:#FAFAF2;
+    color: #3f4044fc;
+    font-weight: bold;
+    font-size: 0.8em;
+ 
+    cursor: pointer; 
+font-family: inherit;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+display: grid;
+}
+
+
+

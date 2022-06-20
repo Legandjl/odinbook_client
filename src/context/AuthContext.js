@@ -1,14 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useLocationTracker from "../hooks/useLocationTracker";
 import useAuthenticate from "../hooks/useAuthenticate";
+import { SocketContext } from "./SocketContext";
 
 const AuthContext = React.createContext();
 
 const AuthContextProvider = (props) => {
+  const { socket } = useContext(SocketContext);
   const [token, setToken] = useState(null);
+
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [login, logout] = useAuthenticate({ setLoading, setToken, setUser });
+
+  useEffect(() => {
+    if (user) {
+      socket.emit("user", user._id);
+      //add user to online users in server
+      socket.connect();
+      return () => {
+        socket.disconnect();
+      };
+    }
+  }, [socket, user]);
 
   useLocationTracker();
 

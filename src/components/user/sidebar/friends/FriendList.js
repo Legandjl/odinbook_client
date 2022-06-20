@@ -1,6 +1,6 @@
 import FriendLink from "./FriendLink";
 
-const Friends = ({ friends }) => {
+const FriendList = ({ friends }) => {
   const friendLinks = friends.map((friend) => {
     return <FriendLink id={friend} />;
   });
@@ -12,4 +12,4 @@ const Friends = ({ friends }) => {
   );
 };
 
-export default Friends;
+export default FriendList;

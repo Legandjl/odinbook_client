@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../../context/AuthContext";
-import useImageCrop from "../../../hooks/useImageCrop";
-import FilePicker from "../../filepicker/FilePicker";
-import CropTool from "../../uploader/CropTool";
-import Details from "./Details";
-import Friends from "./Friends";
-import Profile from "./Profile";
+import { AuthContext } from "../../../../context/AuthContext";
+import useImageCrop from "../../../../hooks/useImageCrop";
+import FilePicker from "../../../filepicker/FilePicker";
+import CropTool from "../../../uploader/CropTool";
+
+import FriendList from "../friends/FriendList";
+import Profile from "../profile/Profile";
 
 const SideBar = (props) => {
   const [loadImage, imageSrc, toggleCrop, startCrop, isCropping] =
@@ -39,7 +39,7 @@ const SideBar = (props) => {
         friendStatus={props.friendStatus}
         isUserPage={isUserPage}
       />
-      <Friends friends={props.profileData.friends} />
+      <FriendList friends={props.profileData.friends} />
     </div>
   );
 };
