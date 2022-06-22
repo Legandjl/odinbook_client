@@ -118,11 +118,39 @@
     border-radius: 12px;
     display: grid;
     align-items: center;
+    position: relative;
+ 
 
 }
 
+.socialMenu {
+    position: absolute;    
+    border-radius: 9px;
+    width:max-content;
+    top:105%;
+    background-color: #303134;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: grid;
+    align-items: center;
+    padding:6px;
+    font-size: 0.85em;
+    grid-gap: 5px;
+}
+
+.socialMenuInner p{
+
+    border-radius: 5px;
+   padding:6px;
+}
+
+.socialMenuInner p:hover {
+    cursor: pointer;
+    background-color: #4b4b4c;
+}
+
 .friendButton {
-  max-width: 9em;
+  max-width: 12em;
+  font-size: 0.85em;
 }
 
 .friendsWrap {

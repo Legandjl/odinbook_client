@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import useFetch from "./useFetch";
+import useHandleFriend from "./useHandleFriend";
 
 const UseFriends = (refreshProfile, friendList) => {
   const [loading, setLoading] = useState(true);
@@ -10,28 +11,37 @@ const UseFriends = (refreshProfile, friendList) => {
   const [requestState, setRequestState] = useState(null);
   // check if friends, then if not check if fr sent
   const [fetchData, fetchInProgress, error] = useFetch();
+  const [handleFriendReq] = useHandleFriend();
   const friendReqUrl = "user/friend_request/";
   const [requestStateList] = useState([
     "Friends",
     "Request Pending",
-    "Add Friend",
+    "Send Friend Request",
+    "Respond to Request",
   ]);
 
   useEffect(() => {
     const checkFriendStatus = async () => {
       setLoading(true);
-      const friend_req_sent = await fetchData(`${friendReqUrl}${id}`, {
+      const friend_req = await fetchData(`${friendReqUrl}${id}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
       // if app user is in the friends list of the user profile being viewed
       if (friendList.indexOf(user._id) > -1) {
         setRequestState(requestStateList[0]);
-        // if there is a friend request pending
-      } else if (friend_req_sent) {
-        setRequestState(requestStateList[1]);
-        // if neither
+      } else if (friend_req !== false) {
+        // friend request pending
+        if (friend_req.sender === user._id) {
+          // user is the sender of the friend request
+          setRequestState(requestStateList[1]);
+        } else {
+          //user is the recipient of the friend request
+          setRequestState(requestStateList[3]);
+        }
       } else {
+        // no friend req exists and users aren't friends
+        // only available path is to allow friend request sending
         setRequestState(requestStateList[2]);
       }
       setLoading(false);
@@ -52,7 +62,8 @@ const UseFriends = (refreshProfile, friendList) => {
     user._id,
   ]);
 
-  const handleFriendReq = async (type) => {
+  const handleClick = async (bool) => {
+    // eslint-disable-next-line default-case
     switch (requestState) {
       case requestStateList[0]:
         console.log("removing");
@@ -76,15 +87,16 @@ const UseFriends = (refreshProfile, friendList) => {
           body: JSON.stringify({ recipient: id }),
         });
         break;
-      default:
-        return;
-      //emit refreshNotifications
-      // refresh profile
+      case requestStateList[3]:
+        await handleFriendReq(bool);
+        break;
     }
+    //emit refreshNotifications
+    // refresh profile
     refreshProfile();
   };
 
-  return [loading, handleFriendReq, requestState];
+  return [loading, handleClick, requestState, requestStateList];
 };
 
 export default UseFriends;

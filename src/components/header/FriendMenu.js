@@ -13,14 +13,14 @@ const FriendMenu = () => {
   });
 
   useEffect(() => {
-    console.log("called");
     // when user opens the friend request panel
-    // set all notifications to viewed
+    // set all notifications to viewed server siide
     socket.emit("setRequestsViewed", user._id);
     socket.on("setRequestsViewed", (res) => {
       // when notifications have been updated server side
       // expect server to emit and respond accordingly
       // updating the requests
+      // refresh()
       console.log(res);
     });
     socket.connect();
