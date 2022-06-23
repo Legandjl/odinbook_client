@@ -4,11 +4,12 @@ import { AuthContext } from "../context/AuthContext";
 import useFetch from "./useFetch";
 import useHandleFriend from "./useHandleFriend";
 
-const UseFriends = (refreshProfile, friendList) => {
+const useSocial = (refreshProfile, friendList) => {
   const [loading, setLoading] = useState(true);
   const { token, user } = useContext(AuthContext);
   const { id } = useParams();
   const [requestState, setRequestState] = useState(null);
+  const [friendRequestId, setFriendRequestId] = useState(null);
   // check if friends, then if not check if fr sent
   const [fetchData, fetchInProgress, error] = useFetch();
   const [handleFriendReq] = useHandleFriend();
@@ -31,6 +32,8 @@ const UseFriends = (refreshProfile, friendList) => {
       if (friendList.indexOf(user._id) > -1) {
         setRequestState(requestStateList[0]);
       } else if (friend_req !== false) {
+        setFriendRequestId(friend_req._id);
+
         // friend request pending
         if (friend_req.sender === user._id) {
           // user is the sender of the friend request
@@ -66,7 +69,14 @@ const UseFriends = (refreshProfile, friendList) => {
     // eslint-disable-next-line default-case
     switch (requestState) {
       case requestStateList[0]:
-        console.log("removing");
+        // /friend/:id
+        await fetchData(`user/friend/${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          method: "DELETE",
+        });
         break;
       case requestStateList[1]:
         await fetchData(`${friendReqUrl}${id}`, {
@@ -88,7 +98,7 @@ const UseFriends = (refreshProfile, friendList) => {
         });
         break;
       case requestStateList[3]:
-        await handleFriendReq(bool);
+        await handleFriendReq(bool, friendRequestId, id);
         break;
     }
     //emit refreshNotifications
@@ -99,4 +109,4 @@ const UseFriends = (refreshProfile, friendList) => {
   return [loading, handleClick, requestState, requestStateList];
 };
 
-export default UseFriends;
+export default useSocial;

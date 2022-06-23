@@ -45,7 +45,15 @@ const FriendMenu = () => {
 
   return (
     <div data-menu={true} className="friendMenu">
-      {!loading ? requests : <p className="friendReq">Loading...</p>}
+      {!loading ? (
+        friendReqs.length === 0 ? (
+          <p className="friendReq">No requests</p>
+        ) : (
+          requests
+        )
+      ) : (
+        <p className="friendReq">Loading...</p>
+      )}
     </div>
   );
 };

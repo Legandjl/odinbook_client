@@ -1,9 +1,9 @@
-import UseFriends from "../../../../hooks/useFriends";
+import useSocial from "../../../../hooks/useSocial";
 import useShowMenu from "../../../../hooks/useShowMenu";
 import SocialMenu from "./SocialMenu";
 
 const FriendButton = (props) => {
-  const [loadingFriendStatus, handleFriendReq, status, statusList] = UseFriends(
+  const [loadingFriendStatus, handleFriendReq, status, statusList] = useSocial(
     props.refresh,
     props.profile.friends
   );
