@@ -17,7 +17,9 @@ const AuthContextProvider = (props) => {
     if (user) {
       socket.emit("user", user._id);
       //add user to online users in server
-      socket.connect();
+      if (!user) {
+        socket.disconnect();
+      }
       return () => {
         socket.disconnect();
       };

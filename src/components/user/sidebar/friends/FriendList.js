@@ -1,7 +1,7 @@
 import FriendLink from "./FriendLink";
 
 const FriendList = ({ friends }) => {
-  const friendLinks = friends.map((friend) => {
+  const friendLinks = friends.slice(0, 7).map((friend) => {
     return <FriendLink id={friend} />;
   });
   return (

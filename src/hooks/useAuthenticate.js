@@ -13,8 +13,8 @@ const useAuthenticate = ({ setLoading, setToken, setUser }) => {
         },
         mode: "cors",
         body: JSON.stringify({
-          email: "dorianlegan@gmail.com",
-          password: "9114",
+          email: email,
+          password: password,
         }),
       });
       const jsonData = await data.json();
@@ -32,6 +32,7 @@ const useAuthenticate = ({ setLoading, setToken, setUser }) => {
     setToken(null);
     setLocal("token", "");
     setLocal("path", "");
+    setUser(null);
   };
   return [login, logout];
 };

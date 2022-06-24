@@ -8,7 +8,6 @@ const useDataLoad = (url, options) => {
 
   const refresh = () => {
     setLoading(true);
-    console.log("Refreshing");
   };
 
   const reset = () => {

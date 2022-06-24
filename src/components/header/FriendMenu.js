@@ -17,16 +17,11 @@ const FriendMenu = () => {
     // set all notifications to viewed server siide
     socket.emit("setRequestsViewed", user._id);
     socket.on("setRequestsViewed", (res) => {
-      // when notifications have been updated server side
-      // expect server to emit and respond accordingly
-      // updating the requests
+      // server emits refresh requests
+      // update the requests
       // refresh()
       console.log(res);
     });
-    socket.connect();
-    return () => {
-      socket.disconnect();
-    };
   }, [socket, user]);
 
   const requests = friendReqs.map((element) => {

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { SocketContext } from "../context/SocketContext";
 import useFetch from "./useFetch";
 import useHandleFriend from "./useHandleFriend";
 
@@ -10,6 +11,8 @@ const useSocial = (refreshProfile, friendList) => {
   const { id } = useParams();
   const [requestState, setRequestState] = useState(null);
   const [friendRequestId, setFriendRequestId] = useState(null);
+  const { socket } = useContext(SocketContext);
+
   // check if friends, then if not check if fr sent
   const [fetchData, fetchInProgress, error] = useFetch();
   const [handleFriendReq] = useHandleFriend();
@@ -103,6 +106,9 @@ const useSocial = (refreshProfile, friendList) => {
     }
     //emit refreshNotifications
     // refresh profile
+
+    socket.emit("refreshNotifications", id);
+
     refreshProfile();
   };
 

@@ -1,8 +1,9 @@
 .loginWrap {
-    height:100%;
+
    
     display: grid;
     align-items: center;
     grid-row: 2;
     justify-items: center;
+    align-self: center;
 }
