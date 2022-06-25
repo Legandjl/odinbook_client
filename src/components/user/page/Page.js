@@ -7,6 +7,7 @@ import { useLocation, useParams } from "react-router-dom";
 
 const Page = () => {
   const { id } = useParams();
+  const [page_id, set_page_id] = useState(id);
   const { token } = useContext(AuthContext);
   const [refreshing, setRefreshing] = useState(true);
   const [profileData, refreshProfile, loading] = useDataLoad(`user/${id}`, {
@@ -20,6 +21,7 @@ const Page = () => {
     if (!loading) {
       refreshProfile();
     }
+
     window.scrollTo(0, 0);
     setRefreshing(false);
 
@@ -29,7 +31,7 @@ const Page = () => {
   return (
     <div className="userPage">
       {!loading && !refreshing && (
-        <SideBar profileData={profileData} refresh={refreshProfile} />
+        <SideBar profileData={profileData} refresh={refreshProfile} id={id} />
       )}
       <div className="feed"></div>
     </div>

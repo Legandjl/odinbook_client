@@ -107,7 +107,7 @@ const useSocial = (refreshProfile, friendList) => {
     //emit refreshNotifications
     // refresh profile
 
-    socket.emit("refreshNotifications", id);
+    socket.emit("refreshNotifications", id, user._id);
 
     refreshProfile();
   };

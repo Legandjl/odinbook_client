@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../context/AuthContext";
 import { SocketContext } from "../../../../context/SocketContext";
 import useImageCrop from "../../../../hooks/useImageCrop";
@@ -13,17 +13,30 @@ const SideBar = (props) => {
   const [loadImage, imageSrc, toggleCrop, startCrop, isCropping] =
     useImageCrop();
   const { user } = useContext(AuthContext);
+  const { id } = useParams();
   const isUserPage = props.profileData._id === user._id;
   const { socket } = useContext(SocketContext);
+  let location = useLocation();
+
+  console.log(id + "overall id");
 
   //listen for emit of friendrefresh here
   // then the button will change and friends list will update
 
   useEffect(() => {
-    socket.on("refreshNotifications", async () => {
-      console.log("refreshing");
+    console.log(id + "page id");
+    socket.on("refreshNotifications", async (pid) => {
+      if (props.id === pid) {
+        console.log(pid + "post id");
+
+        props.refresh();
+      }
     });
-  }, [socket]);
+    return () => {
+      console.log("returning");
+      socket.off();
+    };
+  }, [id, location, props, socket]);
 
   // filepicker triggers start crop
   // startcrop sets is cropping & imagesrc

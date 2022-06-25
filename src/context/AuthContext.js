@@ -15,6 +15,7 @@ const AuthContextProvider = (props) => {
 
   useEffect(() => {
     if (user) {
+      socket.connect();
       socket.emit("user", user._id);
       //add user to online users in server
       if (!user) {
