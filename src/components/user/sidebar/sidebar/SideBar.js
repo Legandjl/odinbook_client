@@ -18,17 +18,12 @@ const SideBar = (props) => {
   const { socket } = useContext(SocketContext);
   let location = useLocation();
 
-  console.log(id + "overall id");
-
   //listen for emit of friendrefresh here
   // then the button will change and friends list will update
 
   useEffect(() => {
-    console.log(id + "page id");
     socket.on("refreshNotifications", async (pid) => {
       if (props.id === pid) {
-        console.log(pid + "post id");
-
         props.refresh();
       }
     });

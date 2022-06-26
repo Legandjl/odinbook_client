@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { SocketContext } from "../../context/SocketContext";
 import useDataLoad from "../../hooks/useDataLoad";
+import Notifications from "../loaders/Notifications";
 
 const FriendMenu = () => {
   const { token, user } = useContext(AuthContext);
@@ -14,7 +15,6 @@ const FriendMenu = () => {
 
   useEffect(() => {
     socket.on("refreshNotifications", async () => {
-      console.log("refreshing");
       refresh();
     });
     return () => {
@@ -41,12 +41,12 @@ const FriendMenu = () => {
     <div data-menu={true} className="friendMenu">
       {!loading ? (
         friendReqs.length === 0 ? (
-          <p className="friendReq">No requests</p>
+          <p className="noFriends">No requests</p>
         ) : (
           requests
         )
       ) : (
-        <p className="friendReq">Loading...</p>
+        <Notifications />
       )}
     </div>
   );

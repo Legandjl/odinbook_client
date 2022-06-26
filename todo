@@ -1,5 +1,14 @@
-login/signup pages
 
-socket refreshes for notifications and friends button/friends panel in sidebar
+
+
 
 loaders for sidebar and main page
+header function fix pushing into search
+search loader
+width fix on feed
+profile photo uploader
+friends panel size and row/cols
+birthdate profile
+friends notifications loader
+
+

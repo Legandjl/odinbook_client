@@ -4,6 +4,7 @@ import SideBar from "../sidebar/sidebar/SideBar";
 import { AuthContext } from "../../../context/AuthContext";
 import useDataLoad from "../../../hooks/useDataLoad";
 import { useLocation, useParams } from "react-router-dom";
+import SidebarLoader from "../../loaders/SidebarLoader";
 
 const Page = () => {
   const { id } = useParams();
@@ -30,8 +31,10 @@ const Page = () => {
 
   return (
     <div className="userPage">
-      {!loading && !refreshing && (
+      {!loading && !refreshing ? (
         <SideBar profileData={profileData} refresh={refreshProfile} id={id} />
+      ) : (
+        <SidebarLoader />
       )}
       <div className="feed"></div>
     </div>

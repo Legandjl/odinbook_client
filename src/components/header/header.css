@@ -46,6 +46,7 @@
     justify-self: end;
     grid-column: 3;
     margin-right: 4em;
+    margin-left: 4em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1.1em;  
@@ -87,6 +88,12 @@
     width:100%;
 
 
+   
+}
+
+.noFriends {
+    width:100%;
+    font-size: 0.8em;
    
 }
 
