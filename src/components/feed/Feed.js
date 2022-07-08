@@ -1,4 +1,5 @@
 import "./feed.css";
+import PostCreator from "./PostCreator";
 
 const Feed = (props) => {
   // posts should be passed in through props
@@ -8,7 +9,7 @@ const Feed = (props) => {
   });
   return (
     <div className="feed">
-      <div className="newPost">NEW POST SECTION</div>
+      <PostCreator />
       {posts}
     </div>
   );

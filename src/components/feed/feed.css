@@ -13,11 +13,12 @@
 .newPost {
 
     width:100%;
-    background-color: rgb(63, 62, 62);
-    height:15em;
+  
+
     border-radius: 12px;
     display: grid;
     align-items: center;
+    grid-gap: 6px;
  
 
 }
@@ -31,3 +32,4 @@
     align-items: center;
 
 }
+
