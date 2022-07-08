@@ -5,10 +5,10 @@ import { AuthContext } from "../../../context/AuthContext";
 import useDataLoad from "../../../hooks/useDataLoad";
 import { useLocation, useParams } from "react-router-dom";
 import SidebarLoader from "../../loaders/SidebarLoader";
+import Feed from "../../feed/Feed";
 
 const Page = () => {
   const { id } = useParams();
-  const [page_id, set_page_id] = useState(id);
   const { token } = useContext(AuthContext);
   const [refreshing, setRefreshing] = useState(true);
   const [profileData, refreshProfile, loading] = useDataLoad(`user/${id}`, {
@@ -36,7 +36,7 @@ const Page = () => {
       ) : (
         <SidebarLoader />
       )}
-      <div className="feed"></div>
+      <Feed />
     </div>
   );
 };

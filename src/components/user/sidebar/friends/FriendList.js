@@ -7,7 +7,9 @@ const FriendList = ({ friends }) => {
   return (
     <div className="friendsWrap">
       <div className="friendsHeader">Friends</div>
-      <div className="friends">{friendLinks}</div>
+      <div className="friends">
+        {friendLinks.length > 0 ? friendLinks : <p>User has no friends</p>}
+      </div>
     </div>
   );
 };

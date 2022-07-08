@@ -37,7 +37,7 @@ const Header = () => {
       setLoading(false);
     });
     return () => {
-      socket.off();
+      socket.off("result");
     };
   }, [searchQuery, socket]);
 

@@ -73,17 +73,7 @@
 
 }
 
-.feed {
-    margin-top: 2em;
-    background-color: #242526;
-    width:100%;  
 
-    margin-bottom: 2em;
-
-    border-radius: 12px;
-    grid-column: 2;
-    min-height: 75vh;
-}
 
 .profilePic {
     width: 100%;
@@ -186,6 +176,12 @@ align-items: center;
 
 
 
+
+
+}
+
+.friends p {
+    
 
 
 }

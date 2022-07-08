@@ -28,8 +28,7 @@ const SideBar = (props) => {
       }
     });
     return () => {
-      console.log("returning");
-      socket.off();
+      socket.off("refreshNotifications");
     };
   }, [id, location, props, socket]);
 

@@ -1,17 +1,25 @@
-import { DateTime } from "luxon";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { AuthContext } from "../../../../context/AuthContext";
+import { useEffect } from "react";
+import useImageLoader from "../../../../hooks/useImageLoader";
 import FriendButton from "./FriendButton";
 
 const Profile = (props) => {
+  const [imageLoaded, loadImage, imageError] = useImageLoader();
+
+  useEffect(() => {
+    if (!imageLoaded) {
+      loadImage(props.profileData.profilePic);
+    }
+  }, [imageLoaded, loadImage, props.profileData.profilePic]);
+  //need imgloader on profilepic
   return (
     <div className="profile">
-      <img
-        className="profilePic"
-        src={props.profileData.profilePic}
-        alt={"user display"}
-      />
+      {imageLoaded && (
+        <img
+          className="profilePic"
+          src={props.profileData.profilePic}
+          alt={"user display"}
+        />
+      )}
       <div className="detailWrap">
         <p>Name: {props.profileData.fullName}</p>
         <p>Gender: {props.profileData.gender}</p>

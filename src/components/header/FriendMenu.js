@@ -13,13 +13,16 @@ const FriendMenu = () => {
     headers: { Authorization: `Bearer ${token}` },
   });
 
+  //pass in cb to set error true if there any problems
+  // then display an error component
+
   useEffect(() => {
     socket.on("refreshNotifications", async () => {
       refresh();
     });
     return () => {
       console.log("returning");
-      socket.off();
+      socket.off("refreshNotifications");
     };
   }, [refresh, socket]);
 

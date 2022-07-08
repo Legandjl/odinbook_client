@@ -1,0 +1,33 @@
+.feed {
+    margin-top: 2em;
+    background-color: #242526;
+    margin-bottom: 2em;
+    border-radius: 12px;
+    grid-column: 2;
+    min-height: 75vh;
+    display: grid;
+    padding:1em;
+    grid-gap: 1.5em;
+}
+
+.newPost {
+
+    width:100%;
+    background-color: rgb(63, 62, 62);
+    height:15em;
+    border-radius: 12px;
+    display: grid;
+    align-items: center;
+ 
+
+}
+
+.post {
+    width:100%;
+    background-color: rgb(63, 62, 62);
+    height:10em;
+    border-radius: 12px;
+    display: grid;
+    align-items: center;
+
+}

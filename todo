@@ -1,14 +1,14 @@
+custom callbacks in usefetch
+(so we can handle errors differently for
+specific components)
 
-
-
-
-loaders for sidebar and main page
-header function fix pushing into search
 search loader
 width fix on feed
 profile photo uploader
+
 friends panel size and row/cols
+
+- test this with dummies
+
 birthdate profile
 friends notifications loader
-
-

@@ -24,6 +24,7 @@
 
     border-radius: 12px;
     grid-template-rows: auto 1fr;
+   
 
 }
 
@@ -38,7 +39,8 @@
     justify-content: start;
     grid-template-columns: 1fr 1fr;
     height:10.5em;
-    padding-right: 3em;
+    padding-right: 4em;
+     grid-gap: 1em;
     
 
 }
@@ -89,7 +91,7 @@
     height:1.1em;
 
     border-radius: 3px;
-    background: linear-gradient(335deg, #4d4b4b3a, #d4cdcd20);
+    background: linear-gradient(335deg, #4d4b4b3a, #d4cdcd27);
     background-size: 120% 120%;
     animation: gradient-animation 2s ease infinite;
     

@@ -15,8 +15,11 @@ const useFetch = () => {
       setLoading(true);
       const data = await fetch(url, options);
       if (data.status === 401) {
-        setError(401);
         setLoading(false);
+        //cb.401 ? cb.401() :
+        nav(`/unauthorised`, { replace: true });
+        // and so on
+        //TODO
         return;
       }
       if (data.status === 400) {
@@ -39,6 +42,7 @@ const useFetch = () => {
     } catch (e) {
       setError(true);
       console.log("error fetching caught");
+      //cb ? cb() : nav oops
       setLoading(false);
       return;
     }

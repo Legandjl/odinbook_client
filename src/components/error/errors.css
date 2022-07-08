@@ -1,0 +1,53 @@
+.notFoundWrapper {
+
+    display: grid;
+
+
+    align-self: center;
+    grid-auto-rows: min-content;
+    align-items: center;
+    grid-gap: 10px;
+ 
+
+}
+
+.notFoundWrapper h1 {
+    margin:0px;
+    font-size: 2.4em;
+    padding:0px;
+
+}
+
+.unauthorised {
+    grid-row: 2;
+    align-self: center;
+    display: grid;
+    justify-self: center;
+  
+}
+
+
+.loginLink {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px;
+}
+
+.loginLink a {
+    color: white;
+}
+
+.oops {
+    display: grid;
+    align-self: center;
+    justify-items: center;
+}
+.oopsInner {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px;
+
+}
+ .oopsInner a {
+    color:black;
+ }
