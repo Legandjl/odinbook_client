@@ -41,6 +41,7 @@ const useFetch = () => {
       return jsonData;
     } catch (e) {
       setError(true);
+      console.log(e);
       console.log("error fetching caught");
       //cb ? cb() : nav oops
       setLoading(false);

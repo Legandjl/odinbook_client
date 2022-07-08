@@ -2,7 +2,12 @@ import ReactTextareaAutosize from "react-textarea-autosize";
 import useInput from "../../hooks/useInput";
 
 const PostCreator = () => {
-  const [value, handleChange] = useInput();
+  const [value, handleChange, handleSubmit, submitting] = useInput();
+  //todo change placeholder depending on if its
+  // homepage/userpage
+  //or someone elses page
+  //maybe completely disabled if its not a friend
+
   return (
     <div className="newPost">
       <ReactTextareaAutosize
@@ -21,7 +26,12 @@ const PostCreator = () => {
         value={value}
         onChange={handleChange}
       />
-      <button disabled={value.trim().length === 0}>Post</button>
+      <button
+        onClick={handleSubmit}
+        disabled={value.trim().length === 0 || submitting}
+      >
+        Post
+      </button>
     </div>
   );
 };
