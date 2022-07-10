@@ -17,7 +17,9 @@ const useDataLoad = (url, options) => {
 
   useEffect(() => {
     const startLoad = async () => {
+      console.log("loading");
       const jsonData = await fetchData(url, options);
+      console.log(jsonData);
 
       setData(jsonData);
       setLoading(false);

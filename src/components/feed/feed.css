@@ -8,6 +8,7 @@
     display: grid;
     padding:1em;
     grid-gap: 1.5em;
+    grid-auto-rows: min-content;
 }
 
 .newPost {
@@ -24,9 +25,12 @@
 }
 
 .post {
-    width:100%;
+  
     background-color: rgb(63, 62, 62);
-    height:30em;
+    min-height: 4em;
+    padding:1em;
+
+
     border-radius: 12px;
     display: grid;
     align-items: center;
