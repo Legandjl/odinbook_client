@@ -15,6 +15,7 @@ const useFetch = () => {
       setLoading(true);
       const data = await fetch(url, options);
       if (data.status === 401) {
+        console.log("err");
         setLoading(false);
         //cb.401 ? cb.401() :
         nav(`/unauthorised`, { replace: true });
@@ -23,6 +24,7 @@ const useFetch = () => {
         return;
       }
       if (data.status === 400) {
+        console.log("err");
         setError(400);
         setLoading(false);
         return;
@@ -34,6 +36,7 @@ const useFetch = () => {
         return;
       }
       if (!data.ok) {
+        console.log("err");
         throw new Error("Could not fetch the resource");
       }
       const jsonData = await data.json();

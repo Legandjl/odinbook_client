@@ -10,7 +10,7 @@ const useScroll = () => {
     const handleScroll = () => {
       const bottom =
         Math.ceil(window.innerHeight + window.scrollY) >=
-        document.documentElement.scrollHeight * 0.99;
+        document.documentElement.scrollHeight * 0.5;
       setBottom(bottom);
     };
 

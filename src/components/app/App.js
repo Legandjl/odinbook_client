@@ -8,6 +8,7 @@ import Login from "../auth/Login";
 import ProtectedRoute from "../protected/ProtectedRoute";
 import { FileContextProvider } from "../../context/FileContext";
 import Unauthorised from "../error/Unauthorised";
+import Footer from "../footer/Footer";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           />
           <Route path="/unauthorised" element={<Unauthorised />} />
         </Routes>
+        <Footer />
       </div>
     </FileContextProvider>
   );

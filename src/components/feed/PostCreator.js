@@ -45,7 +45,7 @@ const PostCreator = (props) => {
           outline: "none",
           borderRadius: "9px",
           padding: "12px",
-          backgroundColor: " rgb(63, 62, 62)",
+          backgroundColor: "#242526",
           color: "white",
         }}
         value={value}
