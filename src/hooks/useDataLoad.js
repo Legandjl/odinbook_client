@@ -15,6 +15,12 @@ const useDataLoad = (url, options) => {
     refresh();
   };
 
+  const addOne = (item) => {
+    setData((prev) => {
+      return [...item, prev];
+    });
+  };
+
   useEffect(() => {
     console.log("loading");
     const startLoad = async () => {

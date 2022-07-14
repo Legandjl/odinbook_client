@@ -6,9 +6,12 @@
     grid-column: 2;
     min-height: 75vh;
     display: grid;
-    padding:1em;
+
     grid-gap: 1.5em;
     grid-auto-rows: min-content;
+
+ 
+  
 }
 
 .newPost {
@@ -21,6 +24,8 @@
     align-items: center;
     grid-gap: 6px;
  
+    max-width: 40em;
+    justify-self: center;
 
 }
 
@@ -34,6 +39,12 @@
 
     border-radius: 9px;
     display: grid;
+    min-width: 24em;
+
+
+    max-width: 40em;
+    width:100%;
+    justify-self: center;
 
 
 
@@ -112,9 +123,11 @@
 }
 
 .postFunctionWrap {
+    width:100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto 1fr ;
     grid-gap: 10px;
+
 
 
  

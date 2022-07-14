@@ -4,6 +4,7 @@ import ReactTextareaAutosize from "react-textarea-autosize";
 import { AuthContext } from "../../context/AuthContext";
 import useDataLoad from "../../hooks/useDataLoad";
 import useFetch from "../../hooks/useFetch";
+import CommentCreator from "./CommentCreator";
 import PostFunctions from "./PostFunctions";
 var Scroll = require("react-scroll");
 
@@ -46,6 +47,9 @@ const Post = (props) => {
   };
 
   const handleLike = async () => {
+    if (loadingLikes) {
+      return;
+    }
     const url = `post/likes/${props.data._id}`;
     const options = {
       headers: {
@@ -54,8 +58,8 @@ const Post = (props) => {
       },
       method: "POST",
     };
-    const like = await fetchData(url, options);
-    console.log(like);
+    await fetchData(url, options);
+    refreshLikes();
   };
 
   return (
@@ -77,25 +81,9 @@ const Post = (props) => {
         </Scroll.Link>
       </div>
       <div className="postFooter">
-        <PostFunctions handleLike={handleLike} />
+        <PostFunctions handleLike={handleLike} likes={likeData} />
       </div>
-      <ReactTextareaAutosize
-        minRows={1}
-        maxRows={6}
-        placeholder="Write a comment.."
-        style={{
-          resize: "none",
-          border: "none",
-          outline: "none",
-          borderRadius: "9px",
-          padding: "9px",
-          backgroundColor: "rgb(63, 62, 62)",
-          color: "white",
-          marginLeft: "1em",
-          marginRight: "1em",
-          marginBottom: "1em",
-        }}
-      />
+      <CommentCreator id={props.data._id} />
     </div>
   );
 };
