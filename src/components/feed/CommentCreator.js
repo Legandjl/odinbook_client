@@ -22,7 +22,9 @@ const CommentCreator = (props) => {
         method: "POST",
         body: JSON.stringify({ comment: value }),
       };
-      await fetchData(url, options);
+      const data = await fetchData(url, options);
+      console.log(data);
+      props.addOne(data);
       reset();
       return;
     }
@@ -47,7 +49,7 @@ const CommentCreator = (props) => {
         color: "white",
         marginLeft: "1em",
         marginRight: "1em",
-        marginBottom: "1em",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
       }}
     />
   );

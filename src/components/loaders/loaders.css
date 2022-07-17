@@ -10,6 +10,14 @@
     width:100%;
 }
 
+.commentsLoaderWrap {
+    display: grid;
+    justify-items: start;
+    width:100%;
+    margin-left: 2em;
+
+}
+
 .sidebarLoader {
     display: grid;  
     margin-top: 2em;

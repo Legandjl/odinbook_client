@@ -47,6 +47,7 @@ const PostCreator = (props) => {
           padding: "12px",
           backgroundColor: "#242526",
           color: "white",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         }}
         value={value}
         onChange={handleChange}

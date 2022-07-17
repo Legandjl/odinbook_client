@@ -7,6 +7,7 @@ import CommentCreator from "./CommentCreator";
 import CommentSection from "./CommentSection";
 import PostFunctions from "./PostFunctions";
 import usePaginate from "../../hooks/usePaginate";
+import Comments from "../loaders/Comments";
 var Scroll = require("react-scroll");
 
 const Post = (props) => {
@@ -109,13 +110,26 @@ const Post = (props) => {
       <div className="postFooter">
         <PostFunctions handleLike={handleLike} likes={likeData} />
       </div>
+
+      <CommentCreator id={props.data._id} addOne={addOne} />
       {commentData.length > 0 && <CommentSection comments={commentData} />}
-      {commentData.length > 0 && !reachedEnd && (
-        <div onClick={handleComments} className="loadMore">
-          <p>Load More</p>
+
+      {loadingComments && <Comments />}
+      {commentData.length > 0 && !reachedEnd && !loadingComments && (
+        <div className="loadMore">
+          <p onClick={handleComments}>Load More</p>
         </div>
       )}
-      <CommentCreator id={props.data._id} />
+      {reachedEnd && (
+        <div
+          style={{ marginTop: commentData.length === 0 && "1em" }}
+          className="noMore"
+        >
+          <p>
+            {commentData.length === 0 ? "No comments yet" : "No more comments"}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
