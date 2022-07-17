@@ -9,10 +9,6 @@ const CommentCreator = (props) => {
   const [value, handleChange, reset] = useInput();
   const { token } = useContext(AuthContext);
   const [fetchData, fetchInProgress, error] = useFetch();
-  //todo change placeholder depending on if its
-  // homepage/userpage
-  //or someone elses page
-  //maybe completely disabled if its not a friend
 
   const handleClick = async (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {

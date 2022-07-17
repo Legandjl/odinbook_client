@@ -7,6 +7,8 @@ const usePaginate = (url, options, cb) => {
   const [fetchData, fetchInProgress, error] = useFetch();
   const [reachedEnd, setReachedEnd] = useState(false);
 
+  console.log(data);
+
   const addOne = (newObj) => {
     setData((prev) => {
       return [newObj, ...prev];

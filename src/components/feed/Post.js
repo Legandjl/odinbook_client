@@ -1,11 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import ReactTextareaAutosize from "react-textarea-autosize";
 import { AuthContext } from "../../context/AuthContext";
 import useDataLoad from "../../hooks/useDataLoad";
 import useFetch from "../../hooks/useFetch";
 import CommentCreator from "./CommentCreator";
+import CommentSection from "./CommentSection";
 import PostFunctions from "./PostFunctions";
+import usePaginate from "../../hooks/usePaginate";
 var Scroll = require("react-scroll");
 
 const Post = (props) => {
@@ -13,6 +14,7 @@ const Post = (props) => {
   const { token } = useContext(AuthContext);
   const [content, setContent] = useState(props.data.content.substring(0, 20));
   const [showActive, setShowActive] = useState(false);
+  const [toSkip, setToSkip] = useState(0);
 
   const [profData, refreshProf, loading] = useDataLoad(
     `user/${props.data.creator}`,
@@ -35,6 +37,29 @@ const Post = (props) => {
       method: "GET",
     }
   );
+
+  const [
+    commentData,
+    refreshComments,
+    loadingComments,
+    reachedEnd,
+    resetComments,
+    addOne,
+  ] = usePaginate(
+    `post/comments/${props.data._id}/${toSkip}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      method: "GET",
+    },
+    setToSkip
+  );
+
+  const handleComments = () => {
+    refreshComments();
+  };
 
   const handleContent = (e) => {
     if (showActive) {
@@ -80,9 +105,16 @@ const Post = (props) => {
           </div>
         </Scroll.Link>
       </div>
+
       <div className="postFooter">
         <PostFunctions handleLike={handleLike} likes={likeData} />
       </div>
+      {commentData.length > 0 && <CommentSection comments={commentData} />}
+      {commentData.length > 0 && !reachedEnd && (
+        <div onClick={handleComments} className="loadMore">
+          <p>Load More</p>
+        </div>
+      )}
       <CommentCreator id={props.data._id} />
     </div>
   );
