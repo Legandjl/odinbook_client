@@ -10,6 +10,7 @@
     grid-gap: 1.5em;
     grid-auto-rows: min-content;
 
+
  
   
 }
@@ -153,6 +154,18 @@ padding-bottom:1em;
   
 }
 
+.commentHeader {
+    grid-column: 1/-1;
+    width:100%;
+    text-align: start;
+    margin-bottom: 8px;
+    font-weight: 900;
+
+
+
+
+}
+
 .commentWrap i {
     align-self: center;
     cursor: pointer;
@@ -189,20 +202,48 @@ padding-bottom:1em;
     cursor: pointer;
 }
 .commentMenu {
-    width:4em;
+    width:8em;
    
     position: absolute;
-    background-color:#3A3B3C;
-    left:150%;    
+    background-color:#242526;
+    left:-20px;    
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 10px;
+    padding: 6px;
     font-size: 0.8em;
     cursor: pointer;
+
 }
 .commentMenuWrap {
     height:100%;
     display: grid;
     align-items: center;
     position: relative;
+}
+
+.commentMenu p {
+
+    align-self: flex-start;
+    padding:5px;
+}
+
+.commentMenu p:hover {
+    border-radius: 2px;
+    background-color:#3A3B3C;
+
+}
+
+.commentFunctions {
+ 
+    width:100%;
+    justify-items: start;
+    justify-content: start;
+    text-align: start;
+    padding-left:1em;
+    font-size: 0.7em;
+    font-weight: 600;
+    margin-top: 4px;
+    cursor: pointer;
+
+
 }

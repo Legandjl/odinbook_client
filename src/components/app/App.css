@@ -46,3 +46,27 @@
     transform: rotate(360deg);
   }
 }
+
+
+@media only screen and (max-width: 750px) {
+  .userPage {
+     grid-template-columns: auto;      
+     margin-left: 0px;
+     margin-right: 0px;
+     grid-gap: 0px;
+     justify-self: center;
+     justify-items: center;
+     justify-content: center;
+  }
+
+  .profile, .friendsWrap {
+      display: none;
+    
+  }
+
+  .feed{
+   
+      width:100%;
+ 
+  }
+} 

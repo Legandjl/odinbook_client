@@ -7,6 +7,7 @@
 
     position: relative;
     grid-gap: 2em;
+
 }
 
 .preview {
@@ -26,6 +27,7 @@
     margin-bottom: 2em;
     top:6em;
     left: 4em;
+ 
 
 }
 
@@ -50,6 +52,7 @@
     justify-items: start;
     justify-content: start;
     grid-template-columns: auto auto;
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .details {
@@ -149,6 +152,7 @@
     grid-template-columns: 1fr;
     background-color: #242526;
     border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 }
 
@@ -202,3 +206,30 @@ align-items: center;
     height: auto;  
     border-radius: 12px;
 }
+
+.sidebarDummy {
+
+}
+
+@media only screen and (max-width: 950px) {
+    .userPage {
+       grid-template-columns: auto;      
+       margin-left: 0px;
+       margin-right: 0px;
+       grid-gap: 0px;
+       justify-self: center;
+       justify-items: center;
+       justify-content: center;
+    }
+
+    .profile, .friendsWrap {
+        display: none;
+      
+    }
+
+    .feed{
+     
+        width:100%;
+   
+    }
+} 

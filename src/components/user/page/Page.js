@@ -29,9 +29,6 @@ const Page = () => {
       setToSkip
     );
 
-  console.log(toSkip);
-  console.log(posts);
-
   useEffect(() => {
     if (bottom && !reachedEnd && !loadingPosts) {
       refreshPosts();
@@ -55,6 +52,7 @@ const Page = () => {
 
   return (
     <div className="userPage">
+      <div className="sidebarDummy"></div>
       {!loading && !refreshing ? (
         <SideBar profileData={profileData} refresh={refreshProfile} id={id} />
       ) : (

@@ -5,10 +5,11 @@ const PostFunctions = (props) => {
   const { user } = useContext(AuthContext);
   const [isLiked, setIsLiked] = useState();
 
-  const liked =
-    props.likes.map((like) => {
-      return like.user === user._id;
-    }).length > 0;
+  const liked = props.likes.some((like) => {
+    return like.user === user._id;
+  });
+
+  const length = props.likes.length;
 
   return (
     <div className="postFunctionWrap">
@@ -18,11 +19,16 @@ const PostFunctions = (props) => {
         class={`ri-heart-${!liked ? "line" : "fill"}`}
       ></i>
       <p>
-        {liked && props.likes.length > 1
-          ? `You and ${props.likes.length - 1} others like this`
-          : liked && props.likes.length === 1
+        {liked && length > 1
+          ? `You and ${length - 1} ${
+              length - 1 === 1 ? "other" : "others"
+            } likes this`
+          : liked && length === 1
           ? "You like this"
-          : props.likes.length === 0 && "Be the first to like this"}
+          : length === 0
+          ? "Be the first to like this"
+          : length > 0 &&
+            `${length} ${length > 1 ? "people like" : "person likes"}  this`}
       </p>
       <i style={{ justifySelf: "end" }} class="ri-chat-3-fill"></i>
     </div>
