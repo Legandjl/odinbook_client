@@ -24,7 +24,10 @@ const Page = () => {
       `post/wall/${id}/${toSkip}`,
       {
         method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       },
       setToSkip
     );
@@ -63,6 +66,7 @@ const Page = () => {
         addOne={addOne}
         reachedEnd={reachedEnd}
         loading={loadingPosts}
+        reset={resetPosts}
       />
     </div>
   );

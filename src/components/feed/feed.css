@@ -71,11 +71,14 @@
     font-size: 1.1em;
     padding:9px;
     margin-top: 0.3em;
+    
 
     
 
 
 }
+
+
 
 .postContent {
     border-top: solid 1px rgba(255, 255, 255, 0.282);
@@ -249,4 +252,16 @@ padding-bottom:1em;
     cursor: pointer;
 
 
+}
+.postSubmit:disabled {
+    background-color: #242526;
+    color:rgba(255, 255, 255, 0.749);
+}
+.postSubmit {
+    background-color: rgba(255, 255, 255, 0.663);
+    border: none;
+    outline:none;
+    border-radius: 6px;
+    height:2em;
+    color:#18191A;
 }

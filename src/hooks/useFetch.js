@@ -10,6 +10,7 @@ const useFetch = () => {
   }
   const fetchData = async (params, options) => {
     setError(false);
+    options.mode = "cors";
     try {
       const url = `http://localhost:3001/${params}`;
       setLoading(true);
