@@ -29,8 +29,7 @@ const PostCreator = (props) => {
     };
     const post = await fetchData(url, options);
     reset();
-    console.log(post.post._id + "post id");
-    props.addOne(post.post);
+    props.addOne(post);
   };
 
   return (
@@ -53,6 +52,7 @@ const PostCreator = (props) => {
         onChange={handleChange}
       />
       <button
+        className="postSubmit"
         onClick={handleClick}
         disabled={value.trim().length === 0 || fetchInProgress}
       >

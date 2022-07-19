@@ -10,19 +10,7 @@ const useDataLoad = (url, options) => {
     setLoading(true);
   };
 
-  const reset = () => {
-    setData([]);
-    refresh();
-  };
-
-  const addOne = (item) => {
-    setData((prev) => {
-      return [...item, prev];
-    });
-  };
-
   useEffect(() => {
-    console.log("loading");
     const startLoad = async () => {
       const jsonData = await fetchData(url, options);
       setData(jsonData);

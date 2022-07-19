@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import useDataLoad from "../../hooks/useDataLoad";
-import useFetch from "../../hooks/useFetch";
 import CommentCreator from "./CommentCreator";
 import CommentSection from "./CommentSection";
 import PostFunctions from "./PostFunctions";
@@ -13,7 +12,7 @@ var Scroll = require("react-scroll");
 
 const Post = (props) => {
   const { token } = useContext(AuthContext);
-  const [content, setContent] = useState(props.data.content.substring(0, 20));
+  const [content, setContent] = useState(props.data.content.substring(0, 140));
   const [showActive, setShowActive] = useState(false);
   const [toSkip, setToSkip] = useState(0);
   const [handleLike, liked, likeData] = useLike(props.data._id);
@@ -46,6 +45,10 @@ const Post = (props) => {
     },
     setToSkip
   );
+
+  useEffect(() => {
+    setContent(props.data.content.substring(0, 140));
+  }, [props.data.content]);
 
   const handleComments = () => {
     refreshComments();
