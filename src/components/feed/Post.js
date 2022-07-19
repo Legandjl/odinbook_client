@@ -8,28 +8,17 @@ import CommentSection from "./CommentSection";
 import PostFunctions from "./PostFunctions";
 import usePaginate from "../../hooks/usePaginate";
 import Comments from "../loaders/Comments";
+import useLike from "../../hooks/useLike";
 var Scroll = require("react-scroll");
 
 const Post = (props) => {
-  const [fetchData, loadingData, error] = useFetch();
   const { token } = useContext(AuthContext);
   const [content, setContent] = useState(props.data.content.substring(0, 20));
   const [showActive, setShowActive] = useState(false);
   const [toSkip, setToSkip] = useState(0);
-
+  const [handleLike, liked, likeData] = useLike(props.data._id);
   const [profData, refreshProf, loading] = useDataLoad(
     `user/${props.data.creator}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      method: "GET",
-    }
-  );
-
-  const [likeData, refreshLikes, loadingLikes] = useDataLoad(
-    `post/likes/${props.data._id}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -70,22 +59,6 @@ const Post = (props) => {
       setContent(props.data.content);
       setShowActive(true);
     }
-  };
-
-  const handleLike = async () => {
-    if (loadingLikes) {
-      return;
-    }
-    const url = `post/likes/${props.data._id}`;
-    const options = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      method: "POST",
-    };
-    await fetchData(url, options);
-    refreshLikes();
   };
 
   return (
