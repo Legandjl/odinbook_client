@@ -3,9 +3,10 @@ import Post from "./Post";
 import PostCreator from "./PostCreator";
 
 const Feed = (props) => {
-  const posts = props.posts.map((item) => {
-    return <Post data={item} />;
+  const posts = props.posts.map((item, i) => {
+    return <Post key={item._id} data={item} />;
   });
+
   return (
     <div className="feed">
       <PostCreator addOne={props.addOne} reset={props.reset} />

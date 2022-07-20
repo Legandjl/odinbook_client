@@ -16,7 +16,7 @@ const Post = (props) => {
   const [showActive, setShowActive] = useState(false);
   const [toSkip, setToSkip] = useState(0);
   const [handleLike, liked, likeData, refreshLikes] = useLike(props.data._id);
-  const ref = useRef(props.data._id);
+
   const [profData, refreshProf, loading] = useDataLoad(
     `user/${props.data.creator}`,
     {
@@ -47,18 +47,6 @@ const Post = (props) => {
     setToSkip
   );
 
-  useEffect(() => {
-    /*
-    if (ref.current !== props.data._id) {
-      resetComments();
-      refreshComments();
-      refreshLikes();
-      setContent(props.data.content.substring(0, 140));
-      setShowActive(false);
-      ref.current = props.data._id;
-    }*/
-  }, [props.data, props.data.id, refreshComments, refreshLikes, resetComments]);
-
   const handleComments = () => {
     refreshComments();
   };
@@ -81,7 +69,7 @@ const Post = (props) => {
         )}
       </div>
       <div className="postContent">
-        {profData && props.data.content} {!profData && "loading..."}
+        {profData && content} {!profData && "loading..."}
         <Scroll.Link offset={-100} to={props.data._id} spy={true} smooth={true}>
           <div onClick={handleContent} className="contentButton">
             {showActive

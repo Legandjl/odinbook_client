@@ -9,7 +9,7 @@ const usePaginate = (url, options, cb) => {
 
   const addOne = (newObj) => {
     setData((prev) => {
-      return [newObj, ...prev];
+      return [newObj].concat([...prev]);
     });
   };
 
