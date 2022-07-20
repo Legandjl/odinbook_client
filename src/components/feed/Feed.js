@@ -6,7 +6,6 @@ const Feed = (props) => {
   const posts = props.posts.map((item) => {
     return <Post data={item} />;
   });
-  console.log(props.posts);
   return (
     <div className="feed">
       <PostCreator addOne={props.addOne} reset={props.reset} />
