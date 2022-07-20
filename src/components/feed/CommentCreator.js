@@ -23,7 +23,7 @@ const CommentCreator = (props) => {
         body: JSON.stringify({ comment: value }),
       };
       const data = await fetchData(url, options);
-      console.log(data);
+
       props.addOne(data);
       reset();
       return;

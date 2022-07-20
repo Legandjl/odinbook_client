@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import useDataLoad from "../../hooks/useDataLoad";
@@ -15,7 +15,8 @@ const Post = (props) => {
   const [content, setContent] = useState(props.data.content.substring(0, 140));
   const [showActive, setShowActive] = useState(false);
   const [toSkip, setToSkip] = useState(0);
-  const [handleLike, liked, likeData] = useLike(props.data._id);
+  const [handleLike, liked, likeData, refreshLikes] = useLike(props.data._id);
+  const ref = useRef(props.data._id);
   const [profData, refreshProf, loading] = useDataLoad(
     `user/${props.data.creator}`,
     {
@@ -47,8 +48,16 @@ const Post = (props) => {
   );
 
   useEffect(() => {
-    setContent(props.data.content.substring(0, 140));
-  }, [props.data.content]);
+    /*
+    if (ref.current !== props.data._id) {
+      resetComments();
+      refreshComments();
+      refreshLikes();
+      setContent(props.data.content.substring(0, 140));
+      setShowActive(false);
+      ref.current = props.data._id;
+    }*/
+  }, [props.data, props.data.id, refreshComments, refreshLikes, resetComments]);
 
   const handleComments = () => {
     refreshComments();
@@ -56,7 +65,7 @@ const Post = (props) => {
 
   const handleContent = (e) => {
     if (showActive) {
-      setContent(props.data.content.substring(0, 20));
+      setContent(props.data.content.substring(0, 140));
       setShowActive(false);
     } else {
       setContent(props.data.content);
@@ -72,7 +81,7 @@ const Post = (props) => {
         )}
       </div>
       <div className="postContent">
-        {profData && content} {!profData && "loading..."}
+        {profData && props.data.content} {!profData && "loading..."}
         <Scroll.Link offset={-100} to={props.data._id} spy={true} smooth={true}>
           <div onClick={handleContent} className="contentButton">
             {showActive

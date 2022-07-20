@@ -22,7 +22,6 @@ const useLike = (id) => {
   });
 
   const handleLike = async () => {
-    console.log("called");
     if (loadingLikes) {
       return;
     }
@@ -38,7 +37,7 @@ const useLike = (id) => {
     refreshLikes();
   };
 
-  return [handleLike, liked, likeData];
+  return [handleLike, liked, likeData, refreshLikes];
 };
 
 export default useLike;

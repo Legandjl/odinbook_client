@@ -4,10 +4,11 @@ import { AuthContext } from "../../context/AuthContext";
 const PostFunctions = (props) => {
   const { user } = useContext(AuthContext);
   const [isLiked, setIsLiked] = useState();
-
-  const liked = props.likes.some((like) => {
-    return like.user === user._id;
-  });
+  const [liked, setLiked] = useState(
+    props.likes.some((like) => {
+      return like.user === user._id;
+    })
+  );
 
   const length = props.likes.length;
 

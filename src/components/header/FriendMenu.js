@@ -21,7 +21,6 @@ const FriendMenu = () => {
       refresh();
     });
     return () => {
-      console.log("returning");
       socket.off("refreshNotifications");
     };
   }, [refresh, socket]);
