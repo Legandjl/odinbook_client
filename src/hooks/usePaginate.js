@@ -13,6 +13,15 @@ const usePaginate = (url, options, cb) => {
     });
   };
 
+  const removeOne = (id) => {
+    setData((prev) => {
+      const newArr = prev.filter((item) => {
+        return item._id !== id;
+      });
+      return newArr;
+    });
+  };
+
   const refresh = () => {
     setLoading(true);
   };
@@ -45,7 +54,7 @@ const usePaginate = (url, options, cb) => {
     }
   }, [cb, fetchData, fetchInProgress, loading, options, reachedEnd, url]);
 
-  return [data, refresh, loading, reachedEnd, reset, addOne];
+  return [data, refresh, loading, reachedEnd, reset, addOne, removeOne];
 };
 
 export default usePaginate;

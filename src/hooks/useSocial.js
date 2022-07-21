@@ -13,7 +13,6 @@ const useSocial = (refreshProfile, friendList) => {
   const [friendRequestId, setFriendRequestId] = useState(null);
   const { socket } = useContext(SocketContext);
 
-  // check if friends, then if not check if fr sent
   const [fetchData, fetchInProgress, error] = useFetch();
   const [handleFriendReq] = useHandleFriend();
   const friendReqUrl = "user/friend_request/";
@@ -25,6 +24,7 @@ const useSocial = (refreshProfile, friendList) => {
   ]);
 
   useEffect(() => {
+    // check if friends, then if not check if fr sent
     const checkFriendStatus = async () => {
       setLoading(true);
       const friend_req = await fetchData(`${friendReqUrl}${id}`, {
@@ -104,7 +104,7 @@ const useSocial = (refreshProfile, friendList) => {
         await handleFriendReq(bool, friendRequestId, id);
         break;
     }
-    //emit refreshNotifications
+    // emit refreshNotifications
     // refresh profile
 
     socket.emit("refreshNotifications", id, user._id);

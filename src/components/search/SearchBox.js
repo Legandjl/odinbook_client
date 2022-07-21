@@ -3,7 +3,7 @@ import "./search.css";
 
 const SearchBox = (props) => {
   const searchLinks = props.results.map((item) => {
-    return <SearchLink info={item} />;
+    return <SearchLink key={item._id} info={item} />;
   });
   return (
     <div className={"searchRes"} data-menu={true}>

@@ -3,7 +3,7 @@ custom callbacks in usefetch
 specific components)
 
 search loader
-width fix on feed
+
 profile photo uploader
 
 friends panel size and row/cols
@@ -12,3 +12,8 @@ friends panel size and row/cols
 
 birthdate profile
 friends notifications loader
+
+priority -
+
+deletion of comments, posts
+edit of comments, posts

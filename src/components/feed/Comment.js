@@ -1,8 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-
-import useDataLoad from "../../hooks/useDataLoad";
-import useFetch from "../../hooks/useFetch";
 import useLike from "../../hooks/useLike";
 import useShowMenu from "../../hooks/useShowMenu";
 import CommentFunctions from "./CommentFunctions";
@@ -10,10 +7,8 @@ import CommentMenu from "./CommentMenu";
 
 const Comment = (props) => {
   const [showMenu, toggleOn] = useShowMenu();
-  const [fetchData, loadingData, error] = useFetch();
   const [handleLike, liked] = useLike(props.comment._id);
-
-  const { token, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [commentContent, setCommentContent] = useState(
     props.comment.comment.substring(0, 200)
   );
@@ -39,7 +34,13 @@ const Comment = (props) => {
         {props.comment.user._id === user._id && (
           <i onClick={toggleOn} class="ri-more-line"></i>
         )}
-        {showMenu && <CommentMenu />}
+        {showMenu && (
+          <CommentMenu
+            id={props.comment._id}
+            index={props.index}
+            removeOne={props.removeOne}
+          />
+        )}
       </div>
 
       <CommentFunctions handleLike={handleLike} liked={liked} />

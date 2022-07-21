@@ -35,6 +35,7 @@ const Post = (props) => {
     reachedEnd,
     resetComments,
     addOne,
+    removeOne,
   ] = usePaginate(
     `post/comments/${props.data._id}/${toSkip}`,
     {
@@ -85,7 +86,9 @@ const Post = (props) => {
       </div>
 
       <CommentCreator id={props.data._id} addOne={addOne} />
-      {commentData.length > 0 && <CommentSection comments={commentData} />}
+      {commentData.length > 0 && (
+        <CommentSection comments={commentData} removeOne={removeOne} />
+      )}
 
       {loadingComments && <Comments />}
       {commentData.length > 0 && !reachedEnd && !loadingComments && (

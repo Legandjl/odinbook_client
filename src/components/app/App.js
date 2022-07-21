@@ -48,7 +48,6 @@ function App() {
           />
           <Route path="/unauthorised" element={<Unauthorised />} />
         </Routes>
-        <Footer />
       </div>
     </FileContextProvider>
   );

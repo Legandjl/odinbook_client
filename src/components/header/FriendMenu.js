@@ -27,7 +27,7 @@ const FriendMenu = () => {
 
   const requests = friendReqs.map((element) => {
     return (
-      <div data-menu={true} className="friendReq">
+      <div key={element._id} data-menu={true} className="friendReq">
         <Link to={`/user/${element.sender._id}`}>
           <p data-menu={true}>{element.sender.fullName}</p>
         </Link>

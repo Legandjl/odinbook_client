@@ -4,7 +4,6 @@ import ReactTextareaAutosize from "react-textarea-autosize";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import useInput from "../../hooks/useInput";
-import Notifications from "../loaders/Notifications";
 import Submitting from "../loaders/Submitting";
 
 const PostCreator = (props) => {
@@ -12,10 +11,6 @@ const PostCreator = (props) => {
   const { token } = useContext(AuthContext);
   const { id } = useParams();
   const [fetchData, fetchInProgress, error] = useFetch();
-  //todo change placeholder depending on if its
-  // homepage/userpage
-  //or someone elses page
-  //maybe completely disabled if its not a friend
 
   const handleClick = async () => {
     const url = "post";

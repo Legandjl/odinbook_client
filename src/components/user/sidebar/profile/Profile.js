@@ -21,9 +21,9 @@ const Profile = (props) => {
         />
       )}
       <div className="detailWrap">
-        <p>Name: {props.profileData.fullName}</p>
-        <p>Gender: {props.profileData.gender}</p>
-        <p>Location: {props.profileData.location} </p>
+        <p>{props.profileData.fullName}</p>
+        <p>{props.profileData.gender}</p>
+        <p>{props.profileData.location} </p>
         {!props.isUserPage && (
           <FriendButton refresh={props.refresh} profile={props.profileData} />
         )}
